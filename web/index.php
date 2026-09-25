@@ -8,7 +8,7 @@ $usuario=getenv("MYSQL_USER");
 inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
-inicioCuerpo("2DAW APLICACION");
+inicioCuerpo("Pruebas básicas");
 cuerpo();  //llamo a la vista
 finCuerpo();
 // **********************************************************
@@ -24,5 +24,7 @@ function cuerpo()
     <br><br>
     Hola, estás en Index.php
     dev rama
+    <a href="./aplicacion/pruebas/index.php">Acceso a pruebas</a>
+
 <?php
 }
