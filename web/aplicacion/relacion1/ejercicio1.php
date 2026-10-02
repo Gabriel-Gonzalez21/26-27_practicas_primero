@@ -1,6 +1,7 @@
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 //controlador
+
 //dibuja la plantilla de la vista
 inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
@@ -17,8 +18,7 @@ function cuerpo()
 ?>
     <br><br>
 
-   Ahora estas en pruebas. <br>
-   <a href="basicas.php">Funciones basicas</a> <br>
-   <a href="pasopar.php">Paso de parametros</a>
+   <h2>Ejercicio 1</h2>
+
 <?php
 }

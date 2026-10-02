@@ -1,6 +1,7 @@
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 //controlador
+
 //dibuja la plantilla de la vista
 inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
@@ -10,15 +11,16 @@ cuerpo(); //llamo a la vista
 finCuerpo();
 // **********************************************************
 //vista
-function cabecera() {}
+function cabecera() {
+       
+}
 //vista
 function cuerpo()
 {
 ?>
     <br><br>
 
-   Ahora estas en pruebas. <br>
-   <a href="basicas.php">Funciones basicas</a> <br>
-   <a href="pasopar.php">Paso de parametros</a>
+   <h2>RELACIÓN 1: Arrays y fechas</h2>
+   <a href="ejercicio1.php">Ejercicio 1</a>
 <?php
 }

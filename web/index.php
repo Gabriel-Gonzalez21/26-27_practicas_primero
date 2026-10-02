@@ -8,22 +8,20 @@ $usuario=getenv("MYSQL_USER");
 inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
-inicioCuerpo("Pruebas básicas");
+inicioCuerpo("2DAW APLICACION");
 cuerpo();  //llamo a la vista
 finCuerpo();
 // **********************************************************
 
 //vista
-function cabecera() 
-{}
+function cabecera() {}
 
 //vista
 function cuerpo()
 {
 ?>
     <br><br>
-    Hola, estás en Index.php
-    dev rama
-    <a href="./aplicacion/pruebas/index.php">Acceso a pruebas</a>
+    <a href="./aplicacion/pruebas/index.php">Acceso a pruebas</a><br>
+    <a href="./aplicacion/relacion1/index.php">Relación 1</a>
 <?php
 }
