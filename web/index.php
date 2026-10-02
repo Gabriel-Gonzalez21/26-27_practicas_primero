@@ -25,6 +25,5 @@ function cuerpo()
     Hola, estás en Index.php
     dev rama
     <a href="./aplicacion/pruebas/index.php">Acceso a pruebas</a>
-
 <?php
 }
