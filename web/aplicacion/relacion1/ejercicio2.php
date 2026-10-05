@@ -2,6 +2,21 @@
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 //controlador
 
+$barraUbi = [
+    [
+        "TEXTO"=>"Inicio",
+        "LINK" =>"/index.php"
+    ],
+    [
+        "TEXTO"=>"Relacion 1",
+        "LINK" =>"/aplicacion/relacion1/index.php"
+    ],
+    [
+        "TEXTO"=>"Ejercicio 2",
+        "LINK" =>""
+    ]
+];
+
 //variables con el mínimo el y máximo de numeros que salen en un dado
 $min = 1;
 $max = 6;
@@ -18,7 +33,7 @@ for ($i = 1; $i <= 6; $i++){
 //******************************MIL TIRADAS************************************** */
 
 $tiradas2 = [];
-$milTiradas = 1000;
+const milTiradas = 1000;
 $numLanzamiento2 = 0;
 
 $contador = [
@@ -31,7 +46,7 @@ $contador = [
 ];
 
 //rellenar el array tiradas2 con las 1000 tiradas
-while($numLanzamiento2 < $milTiradas){
+while($numLanzamiento2 < milTiradas){
    $tiradas2[$numLanzamiento2] = mt_rand($min, $max);
    $numLanzamiento2++;
 }
@@ -55,8 +70,8 @@ for($i = 0; $i < count($tiradas2); $i++){
 inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
-inicioCuerpo("2DAW APLICACION");
-cuerpo($tiradas, $numLanzamiento, $milTiradas, $contador); //llamo a la vista
+inicioCuerpo("2DAW APLICACION", $barraUbi);
+cuerpo($tiradas, $numLanzamiento, milTiradas, $contador); //llamo a la vista
 finCuerpo();
 // **********************************************************
 //vista
