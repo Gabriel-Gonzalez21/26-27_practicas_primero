@@ -20,9 +20,9 @@ $barraUbi = [
 $miArray = [];
 
 $miArray = [
-    1 => "illo",
-    16 => "olla",
-    54 => "fallo"
+    1 => "hola",
+    16 => "buena",
+    54 => "tardes"
 ];
 
 //Añadir el valor 34 al final
@@ -32,9 +32,33 @@ array_push($miArray , 34);
 $miArray["uno"] = "cadena";
 $miArray["dos"] = true;
 $miArray["tres"] = 1.345;
+
+//Rellenar la posición “ultima” con el array (1,34,”nueva”)
 $miArray["ultima"] = [1,34,"nueva"];
 
+//Hacer lo anterior usando una sola sentencia con array;
+$miArray2 = array(
+    1 => "hola",
+    16 => "buena",
+    54 => "tardes",
+    55 => 34,
+    "uno" => "cadena",
+    "dos" => true,
+    "tres" => 1.345,
+    "ultima" => array(1, 34, "nueva")
+);
 
+//Hacer lo anterior usando una sola sentencia con [] 
+$miArray3 = [
+    1 => "hola",
+    16 => "buena",
+    54 => "tardes",
+    55 => 34,
+    "uno" => "cadena",
+    "dos" => true,
+    "tres" => 1.345,
+    "ultima" => [1, 34, "nueva"]
+];
 
 
 //dibuja la plantilla de la vista
@@ -42,7 +66,7 @@ inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
 inicioCuerpo("2DAW APLICACION",$barraUbi);
-cuerpo($miArray); //llamo a la vista
+cuerpo($miArray, $miArray2, $miArray3); //llamo a la vista
 finCuerpo();
 // **********************************************************
 //vista
@@ -50,7 +74,7 @@ function cabecera() {
        
 }
 //vista
-function cuerpo($miArray)
+function cuerpo($miArray, $miArray2, $miArray3)
 {
 ?>
     <br><br>
@@ -60,8 +84,30 @@ function cuerpo($miArray)
     <?php
 
     //Mostrar el array
-    echo "Contenido del array: <br>";
+    echo "<h2>Contenido de miArray1:</h2>";
     foreach ($miArray as $elem){
+        if (is_array($elem)){
+            foreach($elem as $otroArray){
+                echo " - ".$otroArray."<br>";
+            }
+        }else{
+            echo " - ".$elem ."<br>";
+        }
+    }
+
+    echo "<h2>Contenido de miArray2:</h2>";
+    foreach ($miArray2 as $elem){
+        if (is_array($elem)){
+            foreach($elem as $otroArray){
+                echo " - ".$otroArray."<br>";
+            }
+        }else{
+            echo " - ".$elem ."<br>";
+        }
+    }
+
+    echo "<h2>Contenido de miArray3:</h2>";
+    foreach ($miArray3 as $elem){
         if (is_array($elem)){
             foreach($elem as $otroArray){
                 echo " - ".$otroArray."<br>";
