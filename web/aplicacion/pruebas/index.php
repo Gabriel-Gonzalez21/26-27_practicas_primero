@@ -19,6 +19,7 @@ function cuerpo()
 
    Ahora estas en pruebas. <br>
    <a href="basicas.php">Funciones basicas</a> <br>
-   <a href="pasopar.php">Paso de parametros</a>
+   <a href="pasopar.php">Paso de parametros</a> <br>
+   <a href="array.php">Arrays</a>
 <?php
 }
