@@ -47,15 +47,41 @@ function cuerpo($vector)
 
    <?php 
         //Mostrar el array
-        echo "<h2>Contenido de miArray1:</h2>";
+        echo "<h2>Contenido de vector:</h2>";
         foreach ($vector as $indice => $valor) {
 
-            echo " - Posicion: ".$indice." contenido: ".$valor. "<br>";
+            echo " - Posicion: ".$indice." contenido: ".$valor. " tipo (".gettype($valor).")<br>";
 
             $tipo = gettype($valor);
             
             switch($tipo){
-                case "string":
+                case "array":
+                    echo "     Contenido del array: ". "<br>";
+                    foreach($valor as $elem ){
+                        echo $elem. ", <br>";
+                    }
+                    break;
+                
+                case "integer":
+                    echo "Entero con valor ". $valor.", en binario ". decbin($valor). "<br>";
+                    break;
+                
+                case "double": 
+                    echo "Real ".$valor." que al cuadrado es ". pow($valor, 2). "<br>";
+                    break;
+
+                case "string": 
+                    echo "Cadena ".$valor. "<br>";
+                    break;
+
+                case "boolean": 
+                    echo "Booleano ".$valor. "y su opuesto es";
+                    if ($valor===false){
+                        echo " true";
+                    }else{
+                        echo " false";
+                    }
+                    break;
     
             }
 
