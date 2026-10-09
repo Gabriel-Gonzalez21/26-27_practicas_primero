@@ -19,10 +19,13 @@ $barraUbi = [
     ],
     [
         "TEXTO"=>"Relacion 1",
+        "LINK" =>"/aplicacion/relacion1/index.php"
+    ],
+    [
+        "TEXTO"=>"Ejercicio 5",
         "LINK" =>""
     ]
 ];
-
 
 
 //dibuja la plantilla de la vista

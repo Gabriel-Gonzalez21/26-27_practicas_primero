@@ -48,6 +48,7 @@ $miArray2 = array(
     "ultima" => array(1, 34, "nueva")
 );
 
+
 //Hacer lo anterior usando una sola sentencia con [] 
 $miArray3 = [
     1 => "hola",
