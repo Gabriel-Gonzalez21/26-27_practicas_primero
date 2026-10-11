@@ -21,7 +21,9 @@ function cuerpo()
 {
 ?>
     <br><br>esto es html //esto es un comentario
-    <?php 
+    <?php
+        
+        
         echo "klñfffdj";  // esto es un comentario
 
         $var1=25;
@@ -174,8 +176,7 @@ function cuerpo()
             default: $cadena="otro";
         }
                 
-                 
-?>
+    ?>
   
 <?php
 }
