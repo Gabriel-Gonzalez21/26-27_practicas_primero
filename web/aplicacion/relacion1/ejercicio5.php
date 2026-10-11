@@ -53,9 +53,14 @@ function cuerpo($vector)
         echo "<h2>Contenido de vector:</h2>";
         foreach ($vector as $indice => $valor) {
 
-            echo " - Posicion: ".$indice." contenido: ".$valor. " tipo (".gettype($valor).")<br>";
-
             $tipo = gettype($valor);
+
+            if(is_array($valor)){
+                echo " - Posicion: $indice contenido: ARRAY tipo ($tipo)<br>";
+            }else{
+                echo " - Posicion: $indice contenido: $valor tipo ($tipo)<br>";
+            }
+
             
             switch($tipo){
                 case "array":
@@ -89,14 +94,9 @@ function cuerpo($vector)
             }
 
             
-            
 }
     ?>
    
-
-
-
-
 
 <?php
 }

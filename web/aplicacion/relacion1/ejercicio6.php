@@ -44,16 +44,18 @@ function cuerpo($vector, $claves, $valor)
 
    <h2>Ejercicio 6</h2>
 
-   <h3>Recorrido del array:</h3>
-
    <?php 
    
+    echo "<h3>Recorrido simulando un foreach</h3>";
+    
     while(key($vector)!= NULL){
         echo "- Clave: ". key($vector) . ", Valor: ".  current($vector)."<br />";
         next($vector);
     }
 
-    for ($i = 0; $i <= count($claves) ; $i++){
+    echo "<h3>Recorrido con array_keys y array_values</h3>";
+
+    for ($i = 0; $i < count($claves) ; $i++){
         echo "clave: ". $claves[$i] .", valor:" . $valor[$i]."<br>";  
     }
 

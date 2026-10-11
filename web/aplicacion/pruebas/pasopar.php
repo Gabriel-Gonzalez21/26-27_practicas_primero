@@ -3,8 +3,8 @@ include_once(dirname(__FILE__) . "/../../cabecera.php");
 //controlador
 
 //datos basicos
-$nombre="Vicente";
-$edad=30;
+$nombre="Juan";
+$edad=67;
 
 $basicos=[
     "nombre"=>$nombre,
