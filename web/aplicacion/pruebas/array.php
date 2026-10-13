@@ -19,7 +19,7 @@ function cabecera() {}
 //vista
 function cuerpo()
 {
-
+    
      $miArray[3]=23;
      $miArray[7]=1234;
      $miArray[]=54;
