@@ -2,7 +2,13 @@
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 //controlador
 
-
+$cadena1 = "Cadena con comillas dobles";
+$cadena2 = 'Cadena con comillas simples';
+$cadena = <<<EOT
+Hola, $nombre.
+Este es un ejemplo de una cadena heredoc en PHP.
+Puedes usar comillas dobles "así" o simples 'así' sin escapar.
+EOT;
 
 $barraUbi = [
     [
