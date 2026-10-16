@@ -194,3 +194,7 @@ body {
     box-shadow: 0 0 15px rgba(255, 75, 75, 0.2);
     margin: 15px 0;
 }
+
+#wii{
+    width: 100px;
+}

@@ -58,6 +58,7 @@ function inicioCuerpo(string $cabecera, array $barraUbi=[])
         
             <header>
                 <h1 id="titulo"><?php echo $cabecera;?></h1>
+                <a href="../../index.php"><img src="../../imagenes/WiiSportsResort(USA)(EnFrEs)(Rev1).png.7b8c861ce9b84e16722209ff9cbb28ff.png" alt="" id="wii"></a>
             </header>
             
             <div id="barraLogin">
