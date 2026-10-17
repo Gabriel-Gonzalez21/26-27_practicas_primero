@@ -6,9 +6,9 @@ $caracteres = "asdfgghjkklññooyttyrerwqASDDFFEAQFAFFASFASSFA123456789";
 $nuevaCadena = [];
 
 //Rellenar el nuevo array
-for ($x = 0; $x <= 20; $x++){
+for ($x = 0; $x < 20; $x++){
     
-    $IndiceCaracterRandom = mt_rand(0, strlen($caracteres));
+    $IndiceCaracterRandom = mt_rand(0, strlen($caracteres)-1);
     $nuevaCadena[$x] = $caracteres[$IndiceCaracterRandom];
 }
 
@@ -21,6 +21,10 @@ $barraUbi = [
     ],
     [
         "TEXTO"=>"Relacion 2",
+        "LINK" =>"/aplicacion/relacion2/index.php"
+    ],
+    [
+        "TEXTO"=>"Ejercicio 3",
         "LINK" =>""
     ]
 ];
@@ -32,7 +36,7 @@ inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
 inicioCuerpo("2DAW APLICACION", $barraUbi);
-cuerpo($caracteres); //llamo a la vista
+cuerpo($nuevaCadena); //llamo a la vista
 finCuerpo();
 // **********************************************************
 //vista
@@ -40,12 +44,22 @@ function cabecera() {
        
 }
 //vista
-function cuerpo($caracteres)
+function cuerpo($nuevaCadena)
 {
 ?>
     <br><br>
 
    <h2>Ejercicio 3</h2>
+
+   <?php
+        for ($x = 0; $x < count($nuevaCadena); $x++){
+            echo $nuevaCadena[$x];
+        }
+
+        foreach($nuevaCadena as $caracter){
+            echo $caracter;
+        }
+   ?>
    
 <?php
 }
