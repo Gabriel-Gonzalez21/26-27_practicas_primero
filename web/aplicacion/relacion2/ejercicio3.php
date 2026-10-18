@@ -13,6 +13,23 @@ for ($x = 0; $x < 20; $x++){
 }
 
 
+//Apartado b
+$nuevaCadena2 = "";
+
+        while(strlen($nuevaCadena2) < 20){
+
+            $codigoAscii = mt_rand(48, 122);
+
+            if(
+                ($codigoAscii >= 48 && $codigoAscii <= 57) ||
+                ($codigoAscii >= 65 && $codigoAscii <= 90) ||
+                ($codigoAscii >= 97 && $codigoAscii <= 122)
+            ){
+                $nuevaCadena2 .= chr($codigoAscii);
+            }
+        }
+
+
 
 $barraUbi = [
     [
@@ -36,7 +53,7 @@ inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
 inicioCuerpo("2DAW APLICACION", $barraUbi);
-cuerpo($nuevaCadena); //llamo a la vista
+cuerpo($nuevaCadena, $nuevaCadena2); //llamo a la vista
 finCuerpo();
 // **********************************************************
 //vista
@@ -44,7 +61,7 @@ function cabecera() {
        
 }
 //vista
-function cuerpo($nuevaCadena)
+function cuerpo($nuevaCadena, $nuevaCadena2)
 {
 ?>
     <br><br>
@@ -52,13 +69,16 @@ function cuerpo($nuevaCadena)
    <h2>Ejercicio 3</h2>
 
    <?php
-        for ($x = 0; $x < count($nuevaCadena); $x++){
-            echo $nuevaCadena[$x];
-        }
 
+        echo "<h3>Apartado A</h3>";
         foreach($nuevaCadena as $caracter){
             echo $caracter;
         }
+        
+        echo "<h3>Apartado B</h3>";
+        echo $nuevaCadena2;
+        
+        
    ?>
    
 <?php
