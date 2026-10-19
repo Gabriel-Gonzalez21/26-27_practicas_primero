@@ -1,6 +1,14 @@
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
+
+include_once ("./libreria.php");
 //controlador
+
+$vector=array();//el vector vacio
+$numero=0;
+cuentaVeces($vector,"osición",7,$numero); //$vector (“1osición”=>7). En numero se de vuelve 1 porque es la primera llamada…
+cuentaVeces($vector,"otra",2,$numero);//$vector(“otra”=>9).En numero se devuelve 2 porque es la segunda llamada…
+
 
 
 
@@ -22,7 +30,7 @@ inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
 inicioCuerpo("2DAW APLICACION", $barraUbi);
-cuerpo(); //llamo a la vista
+cuerpo($vector, $numero); //llamo a la vista
 finCuerpo();
 // **********************************************************
 //vista
@@ -30,19 +38,24 @@ function cabecera() {
        
 }
 //vista
-function cuerpo()
+function cuerpo($vector, $numero)
 {
 ?>
     <br><br>
 
    <h2>RELACIÓN 3: FUNCIONES</h2>
-   <a href="ejercicio1.php">Ejercicio 1</a><br>
-   <a href="ejercicio2.php">Ejercicio 2</a><br>
-   <a href="ejercicio3.php">Ejercicio 3</a><br>
-   <a href="ejercicio4.php">Ejercicio 4</a><br>
-   <a href="ejercicio5.php">Ejercicio 5</a><br>
-   <a href="ejercicio5.php">Ejercicio 6</a><br>
-   <a href="ejercicio5.php">Ejercicio 7</a><br>
+   
+   <h3>Ejercicio 1</h3>
+
+   <?php 
+
+   if(cuentaVeces($vector,"osición",7,$numero) === false){
+        echo "Error en la llamada";
+    }   
+
+    echo $numero;
+
+    ?>
 
 <?php
 }
