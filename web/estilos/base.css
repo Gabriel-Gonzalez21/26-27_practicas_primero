@@ -198,3 +198,109 @@ body {
 #wii{
     width: 100px;
 }
+
+
+/* ==========================================================================
+   CORRECCIÓN DE CONTRASTES Y LISTADO DE EJERCICIOS
+   ========================================================================== */
+
+/* 1. Corrección del color de texto en los botones del menú */
+#barraMenu a {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    color: #0188c7; /* Cambiado a tu azul principal para que sea legible sobre el fondo claro */
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 0.95em;
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Bordes un poco más visibles */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: inset 0 2px 4px rgba(255,255,255,0.4), 0 4px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+#barraMenu a:hover {
+    background: #0188c7; /* Invierte el fondo al pasar el ratón */
+    border-color: #0188c7;
+    color: #ffffff; /* Texto blanco en hover */
+    box-shadow: 0 0 15px rgba(1, 136, 199, 0.4);
+    transform: translateY(-2px);
+}
+
+/* 2. Corrección de visibilidad para las migas de pan (Breadcrumbs) */
+#barraUbicacion, .barraModdle {
+    font-size: 0.9em;
+    margin: 20px 0;
+    padding: 8px 0;
+    color: #72a6cc; /* Azul apagado para los textos secundarios como ">>" */
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+#barraUbicacion a, .barraModdle a {
+    color: #0188c7; /* Azul fuerte y legible */
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+#barraUbicacion a:hover, .barraModdle a:hover {
+    color: #00b4d8;
+    text-decoration: underline;
+}
+
+/* 3. Título de la sección (RELACIÓN 2...) */
+h2, .titulo-seccion {
+    color: #0188c7;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 1.4em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* 4. Estilos elegantes para el listado de Ejercicios */
+.lista-ejercicios {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.lista-ejercicios li a {
+    display: block;
+    padding: 14px 20px;
+    background: rgba(255, 255, 255, 0.4); /* Tarjeta translúcida */
+    color: #0188c7;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+}
+
+.lista-ejercicios li a:hover {
+    background: rgba(255, 255, 255, 0.8);
+    transform: translateX(5px); /* Desplazamiento lateral suave */
+    box-shadow: 0 4px 15px rgba(1, 136, 199, 0.15);
+    color: #0077b6;
+}
+
+
+
+header {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center; /* Alinea verticalmente al centro */
+    justify-content: flex-start; /* Hace que se apilen hacia la izquierda */
+    gap: 20px; /* Controla la separación exacta entre el logo y el texto */
+    border-radius: 20px 20px 0 0;
+}
+
+

@@ -57,8 +57,8 @@ function inicioCuerpo(string $cabecera, array $barraUbi=[])
         <div id="documento">
         
             <header>
-                <h1 id="titulo"><?php echo $cabecera;?></h1>
                 <a href="../../index.php"><img src="../../imagenes/WiiSportsResort(USA)(EnFrEs)(Rev1).png.7b8c861ce9b84e16722209ff9cbb28ff.png" alt="" id="wii"></a>
+                <h1 id="titulo"><?php echo $cabecera;?></h1>
             </header>
             
             <div id="barraLogin">
@@ -72,7 +72,10 @@ function inicioCuerpo(string $cabecera, array $barraUbi=[])
                         mostrarBarraUbicacion($GLOBALS['ubicacion']);
                     }
                     ?>
-                </ul> 
+                </ul>
+                <a href="../../aplicacion/relacion1/index.php">Relación 1</a>
+                <a href="../../aplicacion/relacion2/index.php">Relación 2</a>
+                <a href="../../aplicacion/relacion3/index.php">Relación 3</a>  
                 
             </div>
 
