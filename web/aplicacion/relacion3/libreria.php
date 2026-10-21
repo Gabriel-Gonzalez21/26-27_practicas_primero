@@ -46,13 +46,53 @@ function generarCadena(int $valor = 10): string|false{
         $array = [];
 
         for ($x = 0; $x < $valor; $x++){
-            $array[$x] = $caracteres[rand(0 ,strlen($caracteres))];
+            $array[$x] = $caracteres[rand(0 ,strlen($caracteres) -1)];
         }
 
+
         // Convertir el array en una cadena
-        $cadena = implode("", $array);
+        //$cadena = implode("", $array);
+
+        $cadena = "";
+        foreach ($array as $elem){
+            $cadena .= $elem;
+        }
+
         return $cadena;
     }
 
     
+}
+
+
+function operaciones(int $tipoOperacion, float ...$operador): float{
+
+    $resultado = 0;
+
+    switch ($tipoOperacion){
+        case 1: 
+            foreach ($operador as $elem){ //Suma todos los elmentos de ...$operador
+                $resultado += $elem;
+            }
+            break;
+        case 2:
+            //Primer operador
+            $primerOperador = $operador[0];
+            $resultado = $primerOperador;
+            //resta a al primer operador el resto de operadores
+            for ($x = 1; $x < count($operador); $x++){//El bucle empieza en uno para que no se reste a si mismo el primer operador
+                $resultado -= $operador[$x];
+            }
+            break;
+        
+        case 3: 
+            foreach ($operador as $elem){ //multiplicacion todos los elmentos de ...$operador
+                $resultado *= $elem;
+            }
+            break;
+
+    }
+
+    return $resultado;
+
 }
