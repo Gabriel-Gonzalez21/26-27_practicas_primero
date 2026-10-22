@@ -15,7 +15,9 @@ $cadenaGenerada1 = generarCadena();
 $cadenaGenerada2 = generarCadena(-1); //Un valor menor o igual a 0 debe dar false
 
 
-//Ejercicio 3
+//Ejercicio 4
+$valor=7;
+devuelve($valor,4); //$valor valdrá 7+4+10 y se devuelve 7*4*10 (10 es el valor por defecto que le he puesto al tercer parámetro.
 
 
 
@@ -37,7 +39,7 @@ inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
 inicioCuerpo("2DAW APLICACION", $barraUbi);
-cuerpo($vector, $numero, $cadenaGenerada1, $cadenaGenerada2); //llamo a la vista
+cuerpo($vector, $numero, $cadenaGenerada1, $cadenaGenerada2, $valor); //llamo a la vista
 finCuerpo();
 // **********************************************************
 //vista
@@ -45,7 +47,7 @@ function cabecera() {
        
 }
 //vista
-function cuerpo($vector, $numero, $cadenaGenerada1, $cadenaGenerada2)
+function cuerpo($vector, $numero, $cadenaGenerada1, $cadenaGenerada2, $valor)
 {
 ?>
     <br><br>
@@ -84,8 +86,14 @@ function cuerpo($vector, $numero, $cadenaGenerada1, $cadenaGenerada2)
     echo "<hr>";
     echo "<h2>Ejercicio 3</h2>";
     echo "Resultado suma de todos los operadores: ". operaciones(1,2,2,2)."<br>";
-    echo "Resultado resta al primer operando: ". operaciones(2, 2, 2);
-    echo "Resultado multiplicacion al primer operando: ". operaciones(2, 2, 2);
+    echo "Resultado resta al primer operando: ". operaciones(2, 2, 2)."<br>";
+    echo "Resultado multiplicacion al primer operando: ". operaciones(3, 2, 2, 2, 2)."<br>";
+    echo "Resultado pares menos impares: ". operaciones(5, 2, 5, 7, 3, 4);
+
+    echo "<hr>";
+    echo "<h2>Ejercicio 4</h2>";
+    echo "La variable valor shora vale: ". $valor."<br>";
+    echo devuelve($valor,4);
 
 
     ?>

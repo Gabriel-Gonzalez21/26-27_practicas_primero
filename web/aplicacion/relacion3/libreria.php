@@ -65,6 +65,19 @@ function generarCadena(int $valor = 10): string|false{
 }
 
 
+/**
+ * Esta función recibe al menos tres parámetros. El primero (entero) es el
+ * tipo de operación. Los demás son valores numéricos (los operandos). El tipo de operación puede ser
+ * 1, suma todos los operandos
+ * 2, al primer operando se restan el resto
+ * 3, multiplicación de todos los operandos.
+ * En cualquier otro caso se suman los operandos que ocupan las posiciones pares y se restan
+ * los de las posiciones impares (el primer operando es 1)
+ *
+ * @param integer $tipoOperacion
+ * @param float ...$operador
+ * @return float
+ */
 function operaciones(int $tipoOperacion, float ...$operador): float{
 
     $resultado = 0;
@@ -85,14 +98,52 @@ function operaciones(int $tipoOperacion, float ...$operador): float{
             }
             break;
         
-        case 3: 
-            foreach ($operador as $elem){ //multiplicacion todos los elmentos de ...$operador
-                $resultado *= $elem;
+        case 3:
+            //Primer operador
+            $primerOperador = $operador[0];
+            $resultado = $primerOperador;
+            for ($x = 1; $x < count($operador); $x++){//El bucle empieza en uno para que no se reste a si mismo el primer operador
+                $resultado *= $operador[$x];
             }
             break;
+        default: 
+            $pares = [];
+            $impares = [];
+            for ($x = 0; $x < count($operador); $x++){
+                if ($x % 2 === 0){
+                    array_push($pares, $operador[$x]);
+                }else{
+                    array_push($impares, $operador[$x]);
+                }
+            }
+            
+            $sumaPares = array_sum($pares);
+            $sumaImpares = array_sum($impares);
 
+            $resultado = $sumaPares - $sumaImpares;
+            
     }
 
     return $resultado;
+
+}
+
+
+/**
+ * Undocumented function
+ *
+ * @param integer $num1
+ * @param integer $num2
+ * @param integer $num3
+ * @return void
+ */
+function devuelve(int &$num1, int $num2 = 5, int $num3 = 10): float{
+            
+    $multiplicacion =  $num1 * $num2 * $num3;
+
+    $suma = $num1 + $num2 + $num3;
+    $num1 = $suma;
+
+    return $multiplicacion;
 
 }
