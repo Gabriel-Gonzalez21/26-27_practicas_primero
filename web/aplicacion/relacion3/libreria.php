@@ -49,7 +49,6 @@ function generarCadena(int $valor = 10): string|false{
             $array[$x] = $caracteres[rand(0 ,strlen($caracteres) -1)];
         }
 
-
         // Convertir el array en una cadena
         //$cadena = implode("", $array);
 
@@ -134,8 +133,7 @@ function operaciones(int $tipoOperacion, float ...$operador): float{
  *
  * @param integer $num1
  * @param integer $num2
- * @param integer $num3
- * @return void
+ * @param integer $num
  */
 function devuelve(int &$num1, int $num2 = 5, int $num3 = 10): float{
             

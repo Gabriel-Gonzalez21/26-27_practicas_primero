@@ -92,8 +92,14 @@ function cuerpo($vector, $numero, $cadenaGenerada1, $cadenaGenerada2, $valor)
 
     echo "<hr>";
     echo "<h2>Ejercicio 4</h2>";
-    echo "La variable valor shora vale: ". $valor."<br>";
-    echo devuelve($valor,4);
+    echo "La variable valor ahora vale: ". $valor."<br>";
+
+    echo "- Los tres parámetros: " . devuelve($valor, 4 , 10)."<br>";
+    echo "- El primer parámetro únicamente: ". devuelve($valor)."<br>";
+    echo "- El primer y el segundo parámetro: ". devuelve($valor, 4). "<br>";
+    echo "- El primer y el tercer parámetro: ". devuelve(num1: $valor ,num3: 7)."<br>";
+
+    //echo devuelve()
 
 
     ?>
