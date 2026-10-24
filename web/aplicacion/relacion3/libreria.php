@@ -133,7 +133,7 @@ function operaciones(int $tipoOperacion, float ...$operador): float{
  *
  * @param integer $num1
  * @param integer $num2
- * @param integer $num
+ * @param integer $num3
  */
 function devuelve(int &$num1, int $num2 = 5, int $num3 = 10): float{
             
@@ -144,4 +144,30 @@ function devuelve(int &$num1, int $num2 = 5, int $num3 = 10): float{
 
     return $multiplicacion;
 
+}
+
+
+
+
+function suma(int $num1, int $num2):int{
+    return $num1 + $num2;
+}
+function resta(int $num1, int $num2):int{
+    return $num1 - $num2;
+}
+function multiplicacion(int $num1, int $num2):int{
+    return $num1 * $num2;
+}
+
+
+function hacerOperacion(string $operacion, int $operando1, int $operando2) : int|false {
+    
+    if ($operacion != "suma" && $operacion != "resta" && $operacion != "multiplicacion"){
+        return false;
+    }
+
+    $funcion = $operacion;
+
+    return $funcion($operando1, $operando2);
+    
 }

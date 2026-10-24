@@ -19,6 +19,11 @@ $cadenaGenerada2 = generarCadena(-1); //Un valor menor o igual a 0 debe dar fals
 $valor=7;
 devuelve($valor,4); //$valor valdrá 7+4+10 y se devuelve 7*4*10 (10 es el valor por defecto que le he puesto al tercer parámetro.
 
+//Ejercicio 5
+$resultadoSuma = hacerOperacion("suma", 2, 2);
+$resultadoResta = hacerOperacion("resta", 2, 2);
+$resultadoMultiplicacion = hacerOperacion("multiplicacion", 2, 2);
+
 
 
 $barraUbi = [
@@ -39,7 +44,7 @@ inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
 inicioCuerpo("2DAW APLICACION", $barraUbi);
-cuerpo($vector, $numero, $cadenaGenerada1, $cadenaGenerada2, $valor); //llamo a la vista
+cuerpo($vector, $numero, $cadenaGenerada1, $cadenaGenerada2, $valor, $resultadoSuma, $resultadoResta, $resultadoMultiplicacion); //llamo a la vista
 finCuerpo();
 // **********************************************************
 //vista
@@ -47,7 +52,7 @@ function cabecera() {
        
 }
 //vista
-function cuerpo($vector, $numero, $cadenaGenerada1, $cadenaGenerada2, $valor)
+function cuerpo($vector, $numero, $cadenaGenerada1, $cadenaGenerada2, $valor, $resultadoSuma, $resultadoResta, $resultadoMultiplicacion)
 {
 ?>
     <br><br>
@@ -99,7 +104,13 @@ function cuerpo($vector, $numero, $cadenaGenerada1, $cadenaGenerada2, $valor)
     echo "- El primer y el segundo parámetro: ". devuelve($valor, 4). "<br>";
     echo "- El primer y el tercer parámetro: ". devuelve(num1: $valor ,num3: 7)."<br>";
 
-    //echo devuelve()
+
+    echo "<hr>";
+    echo "<h2>Ejercicio 5</h2>";
+    echo "Resultado suma: ".$resultadoSuma."<br>";
+    echo "Resultado resta: ".$resultadoResta."<br>";
+    echo "Resultado multiplicacion: ".$resultadoMultiplicacion."<br>";
+
 
 
     ?>
