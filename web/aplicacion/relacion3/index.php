@@ -25,6 +25,26 @@ $resultadoResta = hacerOperacion("resta", 2, 2);
 $resultadoMultiplicacion = hacerOperacion("multiplicacion", 2, 2);
 
 
+//Ejercicio 6
+$resultadoCallbackSuma = llamadaAFuncion(1,2,fn($a,$b)=>$a+$b);
+$resultadoCallbackResta = llamadaAFuncion(1,2,fn($a,$b)=>$a-$b);
+$resultadoCallbackMultiplicacion = llamadaAFuncion(1,2,fn($a,$b)=>$a*$b);
+
+//Funciones anónimas
+$suma = function($a,$b){
+    return $a + $b;
+};
+$resta = function($a,$b){
+    return $a - $b;
+};
+$multiplicacion = function($a,$b){
+    return $a * $b;
+};
+
+//Ejercicio 7
+$miArray = ["Juan", "Pedro", "Fabiana", "Rupilda", "Pui"];
+ordenar($miArray);
+
 
 $barraUbi = [
     [
@@ -44,7 +64,7 @@ inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
 inicioCuerpo("2DAW APLICACION", $barraUbi);
-cuerpo($vector, $numero, $cadenaGenerada1, $cadenaGenerada2, $valor, $resultadoSuma, $resultadoResta, $resultadoMultiplicacion); //llamo a la vista
+cuerpo($vector, $numero, $cadenaGenerada1, $cadenaGenerada2, $valor, $resultadoSuma, $resultadoResta, $resultadoMultiplicacion, $resultadoCallbackSuma, $resultadoCallbackResta, $resultadoCallbackMultiplicacion, $suma, $resta, $multiplicacion, $miArray); //llamo a la vista
 finCuerpo();
 // **********************************************************
 //vista
@@ -52,7 +72,7 @@ function cabecera() {
        
 }
 //vista
-function cuerpo($vector, $numero, $cadenaGenerada1, $cadenaGenerada2, $valor, $resultadoSuma, $resultadoResta, $resultadoMultiplicacion)
+function cuerpo($vector, $numero, $cadenaGenerada1, $cadenaGenerada2, $valor, $resultadoSuma, $resultadoResta, $resultadoMultiplicacion, $resultadoCallbackSuma, $resultadoCallbackResta, $resultadoCallbackMultiplicacion, $suma, $resta, $multiplicacion, $miArray)
 {
 ?>
     <br><br>
@@ -111,6 +131,25 @@ function cuerpo($vector, $numero, $cadenaGenerada1, $cadenaGenerada2, $valor, $r
     echo "Resultado resta: ".$resultadoResta."<br>";
     echo "Resultado multiplicacion: ".$resultadoMultiplicacion."<br>";
 
+
+    echo "<hr>";
+    echo "<h2>Ejercicio 6</h2>";
+    echo "Resultado callback suma: ". $resultadoCallbackSuma."<br>";
+    echo "Resultado callback suma: ". $resultadoCallbackResta."<br>";
+    echo "Resultado callback suma: ". $resultadoCallbackMultiplicacion."<br>";
+
+    echo "<h3>Con funciones anónimas</h3>";
+    echo llamadaAFuncion(2, 2, $suma)."<br>";
+    echo llamadaAFuncion(5, 4, $resta)."<br>";
+    echo llamadaAFuncion(3, 5, $multiplicacion)."<br>";
+
+    echo "<hr>";
+    echo "<h2>Ejercicio 7</h2>";
+    echo "Ordenación de un array de cadenas en orden descendente: <br>";
+    echo "<br>";
+    foreach ($miArray as $elem){
+        echo $elem. ", ";
+    }
 
 
     ?>

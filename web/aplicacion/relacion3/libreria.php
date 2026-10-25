@@ -129,7 +129,9 @@ function operaciones(int $tipoOperacion, float ...$operador): float{
 
 
 /**
- * Undocumented function
+ * Esta función recibe como parámetros tres números (enteros) y devuelve la
+ * suma de los tres valores en el primer parámetro y como resultado de la función el producto de los
+ * tres valores.
  *
  * @param integer $num1
  * @param integer $num2
@@ -159,7 +161,17 @@ function multiplicacion(int $num1, int $num2):int{
     return $num1 * $num2;
 }
 
-
+/**
+ * Funcion que recibe tres parámetros. El primero es una cadena
+ * que puede ser suma, resta o multiplicacion. Los otros dos son los operandos. Esta función se
+ * encargará de devolver el resultado de ejecutar la “cadena” con los operandos usando una variable-
+ * función para llamar a la operación. Hay que comprobar indicando una operación correcta
+ *
+ * @param string $operacion
+ * @param integer $operando1
+ * @param integer $operando2
+ * @return integer|false
+ */
 function hacerOperacion(string $operacion, int $operando1, int $operando2) : int|false {
     
     if ($operacion != "suma" && $operacion != "resta" && $operacion != "multiplicacion"){
@@ -170,4 +182,35 @@ function hacerOperacion(string $operacion, int $operando1, int $operando2) : int
 
     return $funcion($operando1, $operando2);
     
+}
+
+
+
+/**
+ * Funcion que recibe tres operandos (entero, entero y callable) y que
+ * devuelve un entero que es el resultado de llamar al parámetro callback con los otros parámetros.
+ *
+ * @param integer $num1
+ * @param integer $num2
+ * @param callable $callback
+ * @return integer
+ */
+function llamadaAFuncion(int $num1, int $num2, callable $callback) :int {
+    return $callback($num1 , $num2);
+}
+
+
+
+/**
+ * función que se le pasa un array y lo ordena mediante una llamada a usort,
+ * al que se indicará como función callback una función anónima que ordenará en orden descendente
+ * según el número de caracteres de cada elemento.
+ *
+ * @param array $miArray
+ * @return void
+ */
+function ordenar(array &$miArray){
+    usort($miArray, function ($a, $b) {
+        return strlen($b) - strlen($a);
+    });
 }
