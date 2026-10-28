@@ -14,8 +14,6 @@ $miIntrumento = new InstrumentoBase("Flauta");
 
 
 
-
-
 $barraUbi = [
     [
         "TEXTO"=>"Inicio",
@@ -48,7 +46,26 @@ function cuerpo($miIntrumento)
     <br><br>
 
    <h2>RELACIÓN 4: Clases, objetos y enumeraciones</h2>
-   echo "Primer instrumento: ".$miIntrumento;
+
+   
+   <?php 
+
+
+    echo "Primer instrumento: " . $miIntrumento->getDescripcion(). "<br>"; 
+    echo " y su edad es: ". $miIntrumento->getEdad(). "<br>"; 
+    echo " Uso de la funcion envejecer(), la edad pasa a ser: ";
+    $miIntrumento->envejecer();
+    echo $miIntrumento->getEdad();
+    echo "<br>";
+    echo "<h3>Uso del toString</h3>";
+    echo $miIntrumento;
+
+    
+
+
+
+   ?>
+   
 
 <?php
 }
