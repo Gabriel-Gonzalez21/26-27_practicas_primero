@@ -1,6 +1,8 @@
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
-include_once(__DIR__ . "/../../script/clases/InstrumentoBase.php");
+include_once(__DIR__ . "/../../scripts/clases/InstrumentoBase.php");
+include_once(__DIR__ . "/../../scripts/clases/Flauta.php");
+
 
 //controlador
 
@@ -9,10 +11,11 @@ En el controlador de index.php, se definirán variables para el
 acceso a las clases y se mostrará el funcionamiento de las distintas clases en la vista.
 */
 
+/*
 $miIntrumento = new InstrumentoBase("Flauta");
+*/
 
-
-
+$flauta = Flauta::CrearDesdeArray([]);
 
 $barraUbi = [
     [
@@ -32,7 +35,7 @@ inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
 inicioCuerpo("2DAW APLICACION", $barraUbi);
-cuerpo($miIntrumento); //llamo a la vista
+cuerpo($flauta); //llamo a la vista
 finCuerpo();
 // **********************************************************
 //vista
@@ -40,7 +43,7 @@ function cabecera() {
        
 }
 //vista
-function cuerpo($miIntrumento)
+function cuerpo($flauta)
 {
 ?>
     <br><br>
@@ -50,7 +53,7 @@ function cuerpo($miIntrumento)
    
    <?php 
 
-
+    /*
     echo "Primer instrumento: " . $miIntrumento->getDescripcion(). "<br>"; 
     echo " y su edad es: ". $miIntrumento->getEdad(). "<br>"; 
     echo " Uso de la funcion envejecer(), la edad pasa a ser: ";
@@ -59,9 +62,9 @@ function cuerpo($miIntrumento)
     echo "<br>";
     echo "<h3>Uso del toString</h3>";
     echo $miIntrumento;
-
+    */
     
-
+    echo $flauta;
 
 
    ?>
