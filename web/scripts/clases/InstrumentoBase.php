@@ -1,8 +1,9 @@
 <?php
 
-/*
-Añadir comentarios
-*/
+/**
+ * Clase Abstracta InstrumentoBase
+ * Sirve como plantilla base para la creación de diferentes tipos de instrumentos musicales.
+ */
 abstract Class InstrumentoBase{
 
     private string $_descripcion;
@@ -11,7 +12,10 @@ abstract Class InstrumentoBase{
     public int $ordenCreacion = 0;
 
 
-    //Constructor
+    /**
+     * Constructor de la clase InstrumentoBase para inicializar
+     *  las propiedades
+     */
     public function __construct(string $descripcion, int $edad = 10)
     {
         $this->_descripcion = $descripcion;
@@ -26,7 +30,6 @@ abstract Class InstrumentoBase{
     public function getDescripcion(): string{
         return $this->_descripcion;
     }
-
     public function getEdad(): int{
         return $this->_edad;
     }
@@ -39,23 +42,38 @@ abstract Class InstrumentoBase{
         }
     }
 
-    //metodo abstracto sonido
+    /**
+     * metodo abstracto sonido
+     *
+     * @return string
+     */
     abstract public function sonido() : string ;
 
-    //metodo abstracto afinar
+
+    /**
+     * metodo abstracto afinar
+     *
+     * @return string
+     */
     abstract public function afinar() : string ;
 
 
     /**
-     * Aumenta la edad del instrumento en un año
+     * Metodo que aumenta la edad del instrumento en un año
      *
-     * @return Returntype
+     * @return void
      */
     public function envejecer(): void{
         $this->_edad ++;
     }
 
-    public function __toString()
+
+    /**
+     * Metodo toString que devuelve una cadena con la siguiente información
+     *
+     * @return string
+     */
+    public function __toString(): string
     {
         return "Intrumento con descripción ". $this->_descripcion. ", instancia ". $this->ordenCreacion. ",<br>".
                 " de un total de ". self::$_numElementosCreados . ". Tiene ". $this->getEdad(). " años. <br>".

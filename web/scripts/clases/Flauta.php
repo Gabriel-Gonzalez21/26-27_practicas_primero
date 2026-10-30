@@ -47,6 +47,14 @@ final class Flauta extends InstrumentoViento implements IFabricable{
         return "Una flauta se compone de materiales que se pueden reciclar";
     }
 
+
+    /**
+     * método de clonación para la clase flauta de forma que el nuevo objeto tenga los
+     * mismos valores, salvo la edad que será 0 y el número de instancia (propiedad) /número de
+     * instancias (propiedad de clase), ya que realmente se crea una nueva instancia.
+     *
+     * @return void
+     */
     public function __clone()
     {
         $this->_edad = 0;
