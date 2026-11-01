@@ -2,6 +2,8 @@
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 include_once(__DIR__ . "/../../scripts/clases/InstrumentoBase.php");
 include_once(__DIR__ . "/../../scripts/clases/Flauta.php");
+include_once(__DIR__ . "/../../scripts/clases/Persona.php");
+
 
 
 //controlador
@@ -16,6 +18,16 @@ $miIntrumento = new InstrumentoBase("Flauta");
 */
 
 $flauta = Flauta::CrearDesdeArray([]);
+
+$persona = Persona::registrarPersona(
+    "Juan",
+    "05/01/2000",
+    "Calle Principal 1",
+    "Antequera",
+    EstadoCivil::Casado
+);
+
+
 
 $barraUbi = [
     [
@@ -35,7 +47,7 @@ inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
 inicioCuerpo("2DAW APLICACION", $barraUbi);
-cuerpo($flauta); //llamo a la vista
+cuerpo($flauta, $persona); //llamo a la vista
 finCuerpo();
 // **********************************************************
 //vista
@@ -43,7 +55,7 @@ function cabecera() {
        
 }
 //vista
-function cuerpo($flauta)
+function cuerpo($flauta, $persona)
 {
 ?>
     <br><br>
@@ -64,7 +76,11 @@ function cuerpo($flauta)
     echo $miIntrumento;
     */
     
+    echo "<h2>Intrumento</h2>";
     echo $flauta;
+
+    echo "<h2>Persona</h2>";
+    echo $persona;
 
 
    ?>
