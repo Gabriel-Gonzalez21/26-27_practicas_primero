@@ -57,7 +57,7 @@ function cuerpo($valor, $cadena)
 
 
     echo "<h3>Test validacadena de val_normal</h3>";
-    if(VALNORMAL\validaCadena($cadena,10, "cadena no válida")){
+    if(VALNORMAL\validaCadena($cadena,10, "cadena por defecto")){
         echo "cadena menor que la longitud ";
     }
     else{

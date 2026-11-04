@@ -66,11 +66,31 @@ function validaCadena(string &$var, int $longitud, string $defecto):bool{
 
 
 
-/*
+
 function validaFecha(string &$var, string $defecto):bool{
+
+    $resultado = false;
+
     $patron = '/^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/';
 
-    if (preg_match($patron, $var) == true){
-
+    if(preg_match($patron, $var)){
+        
     }
-}*/
+
+    
+
+    $arrayFecha = mb_split("/", $var);
+
+    $dia = $arrayFecha[0];
+    $mes = $arrayFecha[1];
+    $anio = $arrayFecha[2];
+
+
+    if (checkdate($dia, $mes, $anio)){
+        $resultado = true;
+        $var = date('d/m/y', mktime(0,0,0, $mes, $dia, $anio));
+    
+    }
+
+    return $resultado;
+}
