@@ -52,16 +52,13 @@ function validaReal(float &$var, float $min, float $max, float $defecto):bool{
 
 
 function validaCadena(string &$var, int $longitud, string $defecto):bool{
-    $resultado = false;
 
     if (mb_strlen($var) <= $longitud){
-        $resultado = true;
-    }else{
-        $var = $defecto;
-        $resultado = false;
+        return true;
     }
-
-    return $resultado;
+    
+    $var = $defecto;
+    return false;
 }
 
 
@@ -69,28 +66,61 @@ function validaCadena(string &$var, int $longitud, string $defecto):bool{
 
 function validaFecha(string &$var, string $defecto):bool{
 
-    $resultado = false;
-
     $patron = '/^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/';
 
     if(preg_match($patron, $var)){
+        $arrayFecha = mb_split("/", $var);
+
+        $dia = $arrayFecha[0];
+        $mes = $arrayFecha[1];
+        $anio = $arrayFecha[2];
+
+        if (checkdate($mes, $dia, $anio)){
+            $var = date('d/m/y', mktime(0,0,0, $mes, $dia, $anio));  
+            return true;
+        }
         
     }
 
-    
-
-    $arrayFecha = mb_split("/", $var);
-
-    $dia = $arrayFecha[0];
-    $mes = $arrayFecha[1];
-    $anio = $arrayFecha[2];
+    $var = $defecto;
+    return false;
+}
 
 
-    if (checkdate($dia, $mes, $anio)){
-        $resultado = true;
-        $var = date('d/m/y', mktime(0,0,0, $mes, $dia, $anio));
-    
+/**
+ * function validaEmail(string &$var, string $defecto):bool Esta función comprueba que $var
+* contiene un email correcto en el formato aaaaa@bbbb.ccc. En $var se devuelve el email
+ *saneado (en caso de no cumplir las condiciones devuelve $defecto). La función devuelve
+* true si es correcto y false en caso contrario.
+ */
+
+function validaEmail(string &$var, string $defecto):bool {
+
+    $patron = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/';
+
+    if (preg_match($patron, $var)){
+        return true;
     }
 
-    return $resultado;
+    $var = $defecto;
+    return false;
+    
+}
+
+
+/*
+function validaExpresion(string &$var, string $expresion, string $defecto):bool Esta función
+comprueba que $var cumple con la expresión regular $expresion. En caso de no cumplir las
+condiciones se asigna a $var el valor por $defecto. La función devuelve true si es correcto y
+false en caso contrario. 
+*/
+function validaExpresion(string &$var, string $expresion,string $defecto): bool {
+
+    if (preg_match($expresion, $var)) {
+        return true;
+    }
+
+    $var = $defecto;
+
+    return false;
 }
