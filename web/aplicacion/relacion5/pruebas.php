@@ -145,6 +145,87 @@ function cuerpo($valor, $cadena)
         echo "<hr>";
     }
 
+
+    echo "<h3>Test validaEmail</h3>";
+    $horas = [
+        "00:00:00",
+        "13:45:32",
+        "23:59:59",
+        "24:00:00",
+        "10:60:00",
+        "10:30:60",
+        "0:5:1",
+        "hola",
+        ""
+    ];
+
+    foreach($horas as $hora){
+
+        $aux = $hora;
+
+        $resultado = VALNORMAL\validaHora(
+            $aux,
+            "00:00:00"
+        );
+
+        echo "Hora original: " . $hora . "<br>";
+
+        echo "Resultado: ";
+
+        if($resultado){
+            echo "CORRECTA";
+        }else{
+            echo "INCORRECTA";
+        }
+
+        echo "<br>";
+
+        echo "Valor final: " . $aux . "<br>";
+
+        echo "<hr>";
+    }
+
+
+    echo "<h3>Test validaRango</h3>";
+    $colores = [
+        "rojo",
+        "verde",
+        "azul"
+    ];
+
+    echo "<h3>Prueba tipo 1 (valores)</h3>";
+
+    if (VALNORMAL\validaRango("verde", $colores)) {
+        echo "verde es válido<br>";
+    } else {
+        echo "verde NO es válido<br>";
+    }
+
+    if (VALNORMAL\validaRango("amarillo", $colores)) {
+        echo "amarillo es válido<br>";
+    } else {
+        echo "amarillo NO es válido<br>";
+    }
+    $persona = [
+    "nombre" => "Gabriel",
+    "edad" => 20,
+    "ciudad" => "Antequera"
+];
+
+    echo "<h3>Prueba tipo 2 (claves)</h3>";
+
+    if (VALNORMAL\validaRango("nombre", $persona, 2)) {
+        echo "nombre es una clave válida<br>";
+    } else {
+        echo "nombre NO es una clave válida<br>";
+    }
+
+    if (VALNORMAL\validaRango("direccion", $persona, 2)) {
+        echo "direccion es una clave válida<br>";
+    } else {
+        echo "direccion NO es una clave válida<br>";
+    }
+
     ?>
 
 <?php

@@ -89,7 +89,7 @@ function validaFecha(string &$var, string $defecto):bool{
         $anio = $arrayFecha[2];
 
         if (checkdate($mes, $dia, $anio)){
-            $var = date('d/m/y', mktime(0,0,0, $mes, $dia, $anio));  
+            $var = date('d/m/Y', mktime(0,0,0, $mes, $dia, $anio));  
             return true;
         }
         
@@ -100,32 +100,40 @@ function validaFecha(string &$var, string $defecto):bool{
 }
 
 
-/*
-function validaHora(string &$var, string $defecto):bool Esta función comprueba que $var
-contiene una hora correcta en el formato hh:mm:ss . En $var se devuelve la hora saneada (2
-cifras para hora, min, segundos - Ej 0:5:1, hora valida aunque se sanea y se convierte a
-00:05:01). En caso de no cumplir las condiciones devuelve $defecto en $var. La función
-devuelve true si es correcta y false en caso contrario
-*/
+
 /**
  * Esta función comprueba que $var contiene una hora correcta en el formato hh:mm:ss
  *
  * @param string $var
  * @param string $defecto
- * @return boolean
+ * @return boolean La función devuelve true si es correcta y false en caso contrario
  */
-function validaHora(string &$var, string $defecto):bool {
+function validaHora(string &$var, string $defecto): bool
+{
+    $patron = '/^([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2})$/';
 
-    $patron = '/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/';
+    if (preg_match($patron, $var)) {
 
-    if(preg_match($patron, $var)){
-        return true;
+        $arrayHora = mb_split(":", $var);
+
+        $hora = (int)$arrayHora[0];
+        $minuto = (int)$arrayHora[1];
+        $segundo = (int)$arrayHora[2];
+
+        if ($hora >= 0 && $hora <= 23 &&
+            $minuto >= 0 && $minuto <= 59 &&
+            $segundo >= 0 && $segundo <= 59) {
+
+            $var = sprintf("%02d:%02d:%02d", $hora, $minuto, $segundo);
+
+            return true;
+        }
     }
 
     $var = $defecto;
+
     return false;
 }
-
 
 
 
@@ -166,6 +174,35 @@ function validaExpresion(string &$var, string $expresion,string $defecto): bool 
     }
 
     $var = $defecto;
+
+    return false;
+}
+
+
+
+/**
+ * Esta función comprueba que $var sea igual a uno de los elementos del array $posibles ($tipo=1) o a una de las claves
+ * del array $posibles ($tipo=2).
+ *
+ * @param mixed $var
+ * @param array $posibles
+ * @param integer $tipo
+ * @return boolean
+ */
+function validaRango(mixed $var, array $posibles, int $tipo=1):bool{
+    
+    if ($tipo === 1){
+
+        if (in_array($var, $posibles)){
+            return true;
+        }
+
+    }else if ($tipo === 2){
+
+        if (array_key_exists($var, $posibles)){
+            return true;
+        }
+    }
 
     return false;
 }
