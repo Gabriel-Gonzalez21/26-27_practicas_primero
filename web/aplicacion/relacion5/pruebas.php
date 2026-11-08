@@ -1,6 +1,6 @@
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
-include_once(__DIR__ . "/../../scripts/librerias/val_normal.php");
+include_once(__DIR__ . "/val_normal.php");
 //controlador
 
 $valor = 50;
