@@ -22,6 +22,7 @@ function cuerpo()
    <a href="pasopar.php">Paso de parametros</a> <br>
    <a href="array.php">Arrays</a> <br>
    <a href="cadenas.php">Cadenas</a> <br>
+   <a href="pagformulario.php">Formulario</a> <br>
 
 <?php
 }
