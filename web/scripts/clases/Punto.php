@@ -32,7 +32,29 @@ class Punto{
 
     private string $_color;
 
-    private string $_grosor;
+    private int $_grosor;
+
+
+    //----------------------CONSTRUCTOR------------------------------------
+    public function __construct(int $x, int $y, string $color, int $grosor){
+
+        if (!$this->setX($x)){
+            throw new Exception('cordenada no válida');
+        }
+
+        if (!$this->setY($y)){
+            throw new Exception('cordenada no válida');
+        }
+
+        if (!$this->setColor($color)){
+            throw new Exception('color no válido');
+        }
+
+        if (!$this->setGrosor($grosor)){
+            throw new Exception('grosor no válido');
+        }
+            
+    }
 
 
 
@@ -77,7 +99,7 @@ class Punto{
 
     public function setColor(string $color): bool{
 
-        if(isset($color, self::COLORES) === false){
+        if(array_key_exists($color, self::COLORES) === false){
             return false;
         }
         
@@ -87,18 +109,26 @@ class Punto{
 
 
     //grosor
-    public function getGrosor() : string {
+    public function getGrosor() : int {
         return $this->_grosor;
     }
 
-    public function setGrosor(string $grosor): bool{
+    public function setGrosor(int $grosor): bool{
 
-        if(isset($grosor, self::GROSORES) === false){
+        if(array_key_exists($grosor, self::GROSORES) === false){
             return false;
         }
         
         $this->_grosor = $grosor;
         return true;
+    }
+
+
+
+    //No se pueden crear propiedades dinámicas.
+    public function __set(string $nombre, mixed $valor): void{
+
+        throw new Exception("No se pueden crear propiedades dinámicas");
     }
 
 
