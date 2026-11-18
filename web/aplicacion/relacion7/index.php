@@ -3,7 +3,6 @@ include_once(dirname(__FILE__) . "/../../cabecera.php");
 //controlador
 
 
-
 $barraUbi = [
     [
         "TEXTO"=>"Inicio",
@@ -36,8 +35,9 @@ function cuerpo()
     <br><br>
 
    <h2>RELACIÓN 7: ficheros</h2>
-   <a href="pruebas.php">Pruebas</a><br>
-   <a href="formulario.php">Formulario</a><br>
 
+    <form action="">
+
+    </form>
 <?php
 }

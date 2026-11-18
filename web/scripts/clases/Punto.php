@@ -53,6 +53,7 @@ class Punto{
         return true;
     }
 
+
     //y
     public function getY(): int{
         return $this->_y;
@@ -65,6 +66,38 @@ class Punto{
         }
 
         $this->_y = $y;
+        return true;
+    }
+
+
+    //color
+    public function getColor() : string {
+        return $this->_color;
+    }
+
+    public function setColor(string $color): bool{
+
+        if(isset($color, self::COLORES) === false){
+            return false;
+        }
+        
+        $this->_color = $color;
+        return true;
+    }
+
+
+    //grosor
+    public function getGrosor() : string {
+        return $this->_grosor;
+    }
+
+    public function setGrosor(string $grosor): bool{
+
+        if(isset($grosor, self::GROSORES) === false){
+            return false;
+        }
+        
+        $this->_grosor = $grosor;
         return true;
     }
 
