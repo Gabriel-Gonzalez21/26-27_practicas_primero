@@ -23,6 +23,14 @@ $grosor = "";
 
 $errores = [];
 
+$arrayPuntos = [
+    new Punto(100, 100, "red", 1),
+
+    new Punto(200, 150, "green", 2),
+
+    new Punto( 300, 250, "blue", 3)
+];
+
 //Recoger formulario al pulsar en guardar
 if (isset($_POST["guardar"])) {
     if (isset($_POST["x"])) {
@@ -35,7 +43,7 @@ if (isset($_POST["guardar"])) {
         $color = trim($_POST["color"]);
     }
     if (isset($_POST["grosor"])) {
-        $grosor = trim($_POST["grosor"]);
+        $grosor = $_POST["grosor"];
     }
     
     
@@ -55,6 +63,13 @@ if (isset($_POST["guardar"])) {
     if (!array_key_exists($grosor, Punto::GROSORES)) {
         $errores["grosor"] = "Seleccione un grosor";
     }
+
+
+    //Crear un nuevo punto si todo es correcto
+    if (count($errores) === 0){
+        //se crea una instancia Punto y se guarda en el arrayPuntos
+        $arrayPuntos[] = new Punto($x, $y, $color, $grosor);
+    }
     
 }
 
@@ -67,7 +82,7 @@ inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
 inicioCuerpo("2DAW APLICACION", $barraUbi);
-cuerpo($errores, $x, $y, $color, $grosor); //llamo a la vista
+cuerpo($errores, $x, $y, $color, $grosor, $arrayPuntos); //llamo a la vista
 finCuerpo();
 // **********************************************************
 //vista
@@ -75,7 +90,7 @@ function cabecera() {
        
 }
 //vista
-function cuerpo($errores, $x, $y, $color, $grosor)
+function cuerpo($errores, $x, $y, $color, $grosor, $arrayPuntos)
 {
 ?>
     <br><br>
@@ -157,6 +172,22 @@ function cuerpo($errores, $x, $y, $color, $grosor)
         
 
         <button type="submit" name="guardar">Guardar</button>
+
+        <h3>Puntos generados</h3>
+
+        <textarea rows="10" cols="50">
+        <?php
+        foreach ($arrayPuntos as $punto){
+
+            echo $punto->getX(). ";". $punto->getY(). ";". $punto->getColor(). ";". $punto->getGrosor(). PHP_EOL;
+
+        }
+        ?>
+        </textarea>
+
+
+        <h3>Imagen</h3>
+        <img src="imagen.php" alt="Puntos">
 
     </form>
 <?php
