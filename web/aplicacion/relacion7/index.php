@@ -178,9 +178,8 @@ function cuerpo($errores, $x, $y, $color, $grosor, $arrayPuntos)
         <textarea rows="10" cols="50">
         <?php
         foreach ($arrayPuntos as $punto){
-
+            
             echo $punto->getX(). ";". $punto->getY(). ";". $punto->getColor(). ";". $punto->getGrosor(). PHP_EOL;
-
         }
         ?>
         </textarea>
