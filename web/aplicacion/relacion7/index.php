@@ -25,11 +25,62 @@ $errores = [];
 
 $arrayPuntos = [
     new Punto(100, 100, "red", 1),
-
     new Punto(200, 150, "green", 2),
-
     new Punto( 300, 250, "blue", 3)
 ];
+
+
+/*
+El fichero de imagen se personalizará para que el nombre refleje información del cliente. Esto es, se tendrá un archivo dentro de
+/imagenes/puntos/ con el nombre en el formato: imagen_dirip_navegador.jpg (dirip es la
+dirección IP del cliente y navegador es una cadena que indica tipo de navegador, ej 192_168_2_101_chrome.png)
+ */
+
+$rutaImagenes = RUTABASE . "/imagenes/puntos";
+$ip = str_replace(".", "_", $_SERVER["REMOTE_ADDR"]);
+$navegador = "firefox";
+
+//Nombre de la imagen
+$nombreImagen = $rutaImagenes . "/imagen_" . $ip . "_" . $navegador . ".jpg";
+
+//Nombre del fichero con los puntos
+$nombreFichero = RUTABASE ."/ficheros/" ."puntos_" . $ip . "_" . $navegador . ".dat";
+
+//Si no existe la imahen
+if (!file_exists($nombreImagen)) {
+
+    $imagen = imagecreatetruecolor(500,500);
+    $blanco = imagecolorallocate($imagen, 255, 255, 255);
+    $negro = imagecolorallocate($imagen,0,0,0);
+    imagefill($imagen,0,0,$blanco);
+    imagerectangle($imagen,0,0,499,499,$negro);
+
+    foreach ($arrayPuntos as $punto) {
+
+        $rgb = Punto::COLORES[$punto->getColor()]["rgb"];
+        $colorGD = imagecolorallocate($imagen, $rgb[0], $rgb[1], $rgb[2]);
+        imagefilledellipse($imagen, $punto->getX(), $punto->getY(), $punto->getGrosor() * 5, $punto->getGrosor() * 5, $colorGD);
+    }
+
+    imagejpeg($imagen, $nombreImagen);
+}
+
+//Si no exite el fichero
+if (!file_exists($nombreFichero)) {
+
+    $fic = fopen( $nombreFichero, "w");
+
+    foreach ($arrayPuntos as $punto) {
+
+        $linea = $punto->getX() . ";" .  $punto->getY() . ";" . $punto->getColor() . ";" . $punto->getGrosor();
+
+        fputs($fic, $linea . PHP_EOL);
+    }
+
+    fclose($fic);
+}
+
+
 
 //Recoger formulario al pulsar en guardar
 if (isset($_POST["guardar"])) {
@@ -82,7 +133,7 @@ inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
 inicioCuerpo("2DAW APLICACION", $barraUbi);
-cuerpo($errores, $x, $y, $color, $grosor, $arrayPuntos); //llamo a la vista
+cuerpo($errores, $x, $y, $color, $grosor, $arrayPuntos,  $nombreImagen); //llamo a la vista
 finCuerpo();
 // **********************************************************
 //vista
@@ -90,7 +141,7 @@ function cabecera() {
        
 }
 //vista
-function cuerpo($errores, $x, $y, $color, $grosor, $arrayPuntos)
+function cuerpo($errores, $x, $y, $color, $grosor, $arrayPuntos, $nombreImagen)
 {
 ?>
     <br><br>
@@ -186,7 +237,7 @@ function cuerpo($errores, $x, $y, $color, $grosor, $arrayPuntos)
 
 
         <h3>Imagen</h3>
-        <img src="imagen.php" alt="Puntos">
+        <img src="/imagenes/puntos/<?= basename($nombreImagen) ?>" alt="Puntos" >
 
     </form>
 <?php
