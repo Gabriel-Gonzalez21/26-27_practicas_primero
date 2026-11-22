@@ -26,7 +26,7 @@ $errores = [];
 $arrayPuntos = [
     new Punto(100, 100, "red", 1),
     new Punto(200, 150, "green", 2),
-    new Punto( 300, 250, "blue", 3)
+    new Punto(400, 250, "blue", 3)
 ];
 
 
@@ -46,7 +46,58 @@ $nombreImagen = $rutaImagenes . "/imagen_" . $ip . "_" . $navegador . ".jpg";
 //Nombre del fichero con los puntos
 $nombreFichero = RUTABASE ."/ficheros/" ."puntos_" . $ip . "_" . $navegador . ".dat";
 
-//Si no existe la imahen
+
+
+//Si no existe el fichero
+if (!file_exists($nombreFichero)) {
+
+    $fic = fopen($nombreFichero, "w");
+
+    foreach ($arrayPuntos as $punto) {
+
+        $linea = $punto->getX() . ";" .$punto->getY() . ";" .$punto->getColor() . ";" .$punto->getGrosor();
+
+        fputs($fic, $linea . PHP_EOL);
+    }
+
+    fclose($fic);
+}
+
+
+
+//-------------------------------------------------
+// APARTADO 3
+/*
+Este fichero contiene una línea por cada punto disponible. El formato de la línea será “x ; y ; color ; grosor “.
+Lo primero que se hará cuando se accede a una página, será cargar los puntos de este fichero al
+array Puntos. Así lo tendremos disponible en todos los ficheros php (index.php, imagen.php, etc)
+*/
+//-------------------------------------------------
+
+$arrayPuntos = [];
+
+$fic = fopen($nombreFichero, "r");
+
+if ($fic) {
+
+    while ($linea = fgets($fic)) {
+
+        $linea = trim($linea);
+
+        if ($linea == "") {
+            continue;
+        }
+
+        $datos = explode(";", $linea);
+
+        $arrayPuntos[] = new Punto((int)$datos[0], (int)$datos[1], $datos[2], (int)$datos[3]);
+    }
+
+    fclose($fic);
+}
+
+
+//Si no existe la imagen
 if (!file_exists($nombreImagen)) {
 
     $imagen = imagecreatetruecolor(500,500);
@@ -65,20 +116,7 @@ if (!file_exists($nombreImagen)) {
     imagejpeg($imagen, $nombreImagen);
 }
 
-//Si no exite el fichero
-if (!file_exists($nombreFichero)) {
 
-    $fic = fopen( $nombreFichero, "w");
-
-    foreach ($arrayPuntos as $punto) {
-
-        $linea = $punto->getX() . ";" .  $punto->getY() . ";" . $punto->getColor() . ";" . $punto->getGrosor();
-
-        fputs($fic, $linea . PHP_EOL);
-    }
-
-    fclose($fic);
-}
 
 
 
@@ -118,10 +156,59 @@ if (isset($_POST["guardar"])) {
 
     //Crear un nuevo punto si todo es correcto
     if (count($errores) === 0){
+
         //se crea una instancia Punto y se guarda en el arrayPuntos
         $arrayPuntos[] = new Punto($x, $y, $color, $grosor);
+
+        //actualizo el fichero
+        $fic = fopen($nombreFichero, "w");
+        foreach ($arrayPuntos as $punto) {
+            $linea = $punto->getX() . ";" .$punto->getY() . ";" .$punto->getColor() . ";" .$punto->getGrosor();
+            fputs($fic, $linea . PHP_EOL);
+        }
+        fclose($fic);
+
+
+        if (file_exists($nombreImagen)) {
+            unlink($nombreImagen);
+        }
+
+        header("Location: ".$_SERVER["PHP_SELF"]);
+
+        exit;
     }
     
+}
+
+
+
+//Al pulsar el boton borrar punto
+if (isset($_POST["borrar"]) && $_POST["puntoAborrar"] !== ""){
+
+    $indice = (int)$_POST["puntoAborrar"];
+
+    //Borrar punto del array
+    //unset($arrayPuntos[$indice]);
+    array_splice($arrayPuntos, $indice, 1);
+
+    //Rescribir el fichero
+    $fic = fopen($nombreFichero, "w");
+    foreach ($arrayPuntos as $punto) {
+        $linea = $punto->getX() . ";" .$punto->getY() . ";" .$punto->getColor() . ";" .$punto->getGrosor();
+        fputs($fic,$linea . PHP_EOL);
+    }
+    fclose($fic);
+
+    //Regenerar imagen
+    if (file_exists($nombreImagen)) {
+        unlink($nombreImagen);
+    }
+
+    //Recargar
+    header("Location: ".$_SERVER["PHP_SELF"]);
+
+    exit;
+
 }
 
 
@@ -224,8 +311,9 @@ function cuerpo($errores, $x, $y, $color, $grosor, $arrayPuntos, $nombreImagen)
 
         <button type="submit" name="guardar">Guardar</button>
 
-        <h3>Puntos generados</h3>
 
+        <!--Puntos generados en text area-->
+        <h3>Puntos generados</h3>
         <textarea rows="10" cols="50">
         <?php
         foreach ($arrayPuntos as $punto){
@@ -236,8 +324,38 @@ function cuerpo($errores, $x, $y, $color, $grosor, $arrayPuntos, $nombreImagen)
         </textarea>
 
 
+
+        <!--Imagen-->
         <h3>Imagen</h3>
         <img src="/imagenes/puntos/<?= basename($nombreImagen) ?>" alt="Puntos" >
+
+
+
+        <!--Borrar punto-->
+        <h3>Borrar un punto</h3>
+        <select name="puntoAborrar" id="">
+            <option value="">Seleccione un punto</option>
+        <?php    
+            foreach ($arrayPuntos as $clave => $valor){
+        ?>
+                <option value="<?= $clave ?>">
+                    <?= $valor->getX() ?>;
+                    <?= $valor->getY() ?>;
+                    <?= $valor->getColor() ?>;
+                    <?= $valor->getGrosor() ?>;
+                </option>
+        <?php 
+            }
+        ?>
+        </select>
+        <button type="submit" name="borrar">Borrar punto</button>
+
+
+        <!--Descargar imagen-->
+        <a href="imagen.php?descargar">Descargar imagen</a>
+
+
+
 
     </form>
 <?php
