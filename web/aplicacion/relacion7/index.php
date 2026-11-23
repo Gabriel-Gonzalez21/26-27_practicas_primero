@@ -120,7 +120,7 @@ if (!file_exists($nombreImagen)) {
 
 
 
-//Recoger formulario al pulsar en guardar
+//-----------------------------Recoger formulario al pulsar en guardar--------------------------------------
 if (isset($_POST["guardar"])) {
     if (isset($_POST["x"])) {
         $x = $_POST["x"];
@@ -182,7 +182,7 @@ if (isset($_POST["guardar"])) {
 
 
 
-//Al pulsar el boton borrar punto
+//-------------------------Al pulsar el boton borrar punto------------------------------------------------
 if (isset($_POST["borrar"]) && $_POST["puntoAborrar"] !== ""){
 
     $indice = (int)$_POST["puntoAborrar"];
@@ -210,6 +210,79 @@ if (isset($_POST["borrar"]) && $_POST["puntoAborrar"] !== ""){
     exit;
 
 }
+
+
+//------------------------------------Subida de fichero---------------------------------------
+
+if (isset($_POST["subir"]) && isset($_FILES["ficheroPuntos"])) {
+
+    //Abrir el txt subido
+    $rutaTemporal = $_FILES["ficheroPuntos"]["tmp_name"];
+    $fic = fopen($rutaTemporal,"r");
+
+    //Leer las lineas
+    while ($linea = fgets($fic)) {
+
+        $linea = trim($linea);
+
+        if ($linea == "") {
+            continue;
+        }
+
+        $datos = explode(";", $linea);
+
+        if (count($datos) != 4) {
+            continue;
+        }
+
+        $x = (int)$datos[0];
+        $y = (int)$datos[1];
+        $color = $datos[2];
+        $grosor = (int)$datos[3];
+
+        //validaciones
+        if (validaEntero($x, 0, 500, 0) && validaEntero($y, 0, 500, 0) && array_key_exists($color, Punto::COLORES)
+            && array_key_exists($grosor,Punto::GROSORES)) {
+
+            //añadir punto
+            $arrayPuntos[] = new Punto($x, $y, $color, $grosor);
+        }
+
+    }
+
+    //Reescribir el fichero
+    fclose($fic);
+
+    $fic = fopen($nombreFichero, "w");
+
+    foreach ($arrayPuntos as $punto) {
+        $linea = $punto->getX() . ";" . $punto->getY() . ";" . $punto->getColor() . ";" .$punto->getGrosor();
+        fputs($fic,$linea . PHP_EOL);
+    }
+
+    fclose($fic);
+
+    //Regenerar imagen
+    if (file_exists($nombreImagen)) {
+        unlink($nombreImagen);
+    }
+
+    //Recargar
+    header("Location: " . $_SERVER["PHP_SELF"]);
+
+    exit;
+
+
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -355,8 +428,19 @@ function cuerpo($errores, $x, $y, $color, $grosor, $arrayPuntos, $nombreImagen)
         <a href="imagen.php?descargar">Descargar imagen</a>
 
 
+    </form>
 
+
+
+    <!--formulario subir fichero puntos-->
+    <h3>Subir fichero de puntos</h3>
+
+    <form method="post" enctype="multipart/form-data">
+
+        <input type="file" name="ficheroPuntos" accept=".txt">
+        <button type="submit" name="subir">Subir fichero</button>
 
     </form>
+
 <?php
 }
