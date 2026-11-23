@@ -27,5 +27,6 @@ function cuerpo()
     <a href="./aplicacion/relacion3/index.php">Relación 3</a><br>
     <a href="./aplicacion/relacion4/index.php">Relación 4</a><br>
     <a href="./aplicacion/relacion5/index.php">Relación 5</a><br>
+    <a href="./aplicacion/relacion7/index.php">Relación 7</a><br>
 <?php
 }
